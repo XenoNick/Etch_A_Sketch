@@ -20,8 +20,15 @@
                     <input type="color" name="color" id="color">
                 </div>
                 <div>
-                    <label for="grid">Choose a board size:</label>
-                    <input type="number" name="grid" id="grid" min="0" max="100" value="16">
+                    <label for="grid">Choose a board size: <span>36 x 36</span></label>
+                    <div>
+                        <label for="small">Small:</label>
+                        <input type="radio" name="size" id="small" value="small">
+                        <label for="medium">Medium:</label>
+                        <input type="radio" name="size" id="medium" value="medium" checked>
+                        <label for="large">Large:</label>
+                        <input type="radio" name="size" id="large" value="large">
+                    </div>
                 </div>
             </div>
             <div class="sketchPieces drawingBoard">
