@@ -52,6 +52,10 @@ button{
     font-family: cursive, sans-serif;
     font-weight: bold;
     cursor: pointer;
+    border: 5px solid black;
+}
+button:active{
+    border: 5px inset rgb(0, 38, 255);
 }
 .leftSide button{
     border-radius: 5px 0 0 5px;
@@ -129,7 +133,7 @@ div label:hover {
 
 .square{
     box-sizing: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    border: 1px solid #00000080;
 }
 .small{
     height: 50px;
@@ -142,4 +146,8 @@ div label:hover {
 .large{
     height: 10px;
     width: 10px;
+}
+
+.selected{
+    border-color: rgb(0, 38, 255);
 }

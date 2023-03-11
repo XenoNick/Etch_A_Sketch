@@ -6,6 +6,7 @@ const penSettings = [...document.querySelectorAll('.penSettings button')]
 const clearButton = document.querySelector('.clear')
 
 const DEFAULT_COLOR = '#e7dcdc'
+const DEFAULT_BORDER_COLOR = '#00000080'
 const COLOR_BLACK = '#000000'
 
 function emptyGrid() {
@@ -54,18 +55,26 @@ window.addEventListener('load', () => {
 
 })
 
+function checkColor() {
+
+}
+
 drawingBoard.addEventListener('mouseover', (e) => {
-    if(!e.target.classList.contains('square')) return;
+    if (!e.target.classList.contains('square')) return;
     if (e.buttons === 1) {
+        const color = checkColor()
         const square = e.target
         square.style.backgroundColor = COLOR_BLACK
+        square.style.borderColor = COLOR_BLACK
     }
 })
 
 drawingBoard.addEventListener('mousedown', (e) => {
-    if(!e.target.classList.contains('square')) return;
+    if (!e.target.classList.contains('square')) return;
+    const color = checkColor()
     const square = e.target
     square.style.backgroundColor = COLOR_BLACK
+    square.style.borderColor = COLOR_BLACK
 })
 
 clearButton.addEventListener('click', () => {
@@ -73,3 +82,13 @@ clearButton.addEventListener('click', () => {
     const measurements = getGridSize(size.value)
     createGrid(+measurements[0], +measurements[1], size.value)
 })
+
+for (let setting of penSettings) {
+    if (setting.classList.contains('clear')) continue;
+    setting.addEventListener('click', () => {
+        if (!setting.classList.contains('selected')) {
+            penSettings.forEach((elm) => { elm.classList.remove('selected') })
+            setting.classList.toggle('selected')
+        }
+    })
+}
