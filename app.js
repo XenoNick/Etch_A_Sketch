@@ -1,8 +1,12 @@
 const drawingBoard = document.querySelector('.drawingBoard')
 const sizeButtons = [...document.querySelectorAll('input[type="radio"]')]
 const currentGridSize = [...document.querySelectorAll('.gridSize')]
+const penColor = document.querySelector('input[type="color"]')
+const penSettings = [...document.querySelectorAll('.penSettings button')]
+const clearButton = document.querySelector('.clear')
 
-
+const DEFAULT_COLOR = '#e7dcdc'
+const COLOR_BLACK = '#000000'
 
 function emptyGrid() {
     const gridSqaures = [...drawingBoard.childNodes]
@@ -48,4 +52,24 @@ window.addEventListener('load', () => {
     createGrid(+currentGridSize[0].textContent, +currentGridSize[1].textContent,
         sizeButtons[1].value)
 
+})
+
+drawingBoard.addEventListener('mouseover', (e) => {
+    if(!e.target.classList.contains('square')) return;
+    if (e.buttons === 1) {
+        const square = e.target
+        square.style.backgroundColor = COLOR_BLACK
+    }
+})
+
+drawingBoard.addEventListener('mousedown', (e) => {
+    if(!e.target.classList.contains('square')) return;
+    const square = e.target
+    square.style.backgroundColor = COLOR_BLACK
+})
+
+clearButton.addEventListener('click', () => {
+    const size = sizeButtons.find((elm) => elm.checked === true)
+    const measurements = getGridSize(size.value)
+    createGrid(+measurements[0], +measurements[1], size.value)
 })

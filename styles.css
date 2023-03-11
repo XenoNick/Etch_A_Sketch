@@ -1,11 +1,12 @@
 body {
-    background-color: grey;
+    background-color: #808080;
     margin: 0;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-content: center;
     font-family: 'Tilt Prism', cursive, sans-serif;
+    user-select: none;
 }
 
 #content {
@@ -75,7 +76,7 @@ input[type="color"]{
 .drawingBoard {
     height: 400px;
     width: 80%;
-    background-color: rgb(231, 220, 220);
+    background-color: #e7dcdc;
     /* border-radius: 5px; */
     display: flex;
     justify-content: flex-start;
@@ -128,7 +129,7 @@ div label:hover {
 
 .square{
     box-sizing: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.42);
+    border: 1px solid rgba(0, 0, 0, 0.5);
 }
 .small{
     height: 50px;
