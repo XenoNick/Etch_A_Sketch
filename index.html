@@ -16,7 +16,7 @@
         <div id="sketchContainer">
             <div class="sketchPieces gridSettings">
                 <div>
-                    <span>Choose a board size: <span>36 x 36</span></span>
+                    <span>Choose a board size:</span>
                     <div>
                         <label for="small">Small:</label>
                         <input type="radio" name="size" id="small" value="small">
@@ -28,11 +28,16 @@
                 </div>
             </div>
             <div class="sketchPieces colorSettings">
-                <div class="penSettings"></div>
-                <div class="drawingBoard">
-
+                <div class="penSettings leftSide">
+                    <input type="color">
+                    <button>Color</button>
+                    <button>Rainbow</button>
                 </div>
-                <div class="penSettings"></div>
+                <div class="drawingBoard"></div>
+                <div class="penSettings rightSide">
+                    <button class="clear">Clear</button>
+                    <button>Eraser</button>
+                </div>
             </div>
             <div class="sketchPieces controls">
                 <div class="knobs"></div>
