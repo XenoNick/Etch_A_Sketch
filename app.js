@@ -21,25 +21,25 @@ function createGrid(width, height, size) {
     }
 }
 
-function getGridSize(e) {
-    const size = []
-    if (e.target.value === 'large') {
-        size.push(currentGridSize[0].textContent = '80')
-        size.push(currentGridSize[1].textContent = '40')
-    } else if (e.target.value === 'medium') {
-        size.push(currentGridSize[0].textContent = '32')
-        size.push(currentGridSize[1].textContent = '16')
+function getGridSize(size) {
+    const measurements = []
+    if (size === 'large') {
+        measurements.push(currentGridSize[0].textContent = '80')
+        measurements.push(currentGridSize[1].textContent = '40')
+    } else if (size === 'medium') {
+        measurements.push(currentGridSize[0].textContent = '32')
+        measurements.push(currentGridSize[1].textContent = '16')
     } else {
-        size.push(currentGridSize[0].textContent = '16')
-        size.push(currentGridSize[1].textContent = '8')
+        measurements.push(currentGridSize[0].textContent = '16')
+        measurements.push(currentGridSize[1].textContent = '8')
     }
-    return size
+    return measurements
 }
 
 for (let sizeButton of sizeButtons) {
     sizeButton.addEventListener('click', (e) => {
-        const size = getGridSize(e)
-        createGrid(+size[0], +size[1], e.target.value)
+        const measurements = getGridSize(e.target.value)
+        createGrid(+measurements[0], +measurements[1], e.target.value)
     })
 }
 
@@ -47,5 +47,5 @@ window.addEventListener('load', () => {
     sizeButtons[1].checked = true
     createGrid(+currentGridSize[0].textContent, +currentGridSize[1].textContent,
         sizeButtons[1].value)
-        
+
 })
