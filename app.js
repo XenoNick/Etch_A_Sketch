@@ -4,6 +4,7 @@ const currentGridSize = [...document.querySelectorAll('.gridSize')]
 const penColor = document.querySelector('input[type="color"]')
 const penSettings = [...document.querySelectorAll('.penSettings button')]
 const clearButton = document.querySelector('.clear')
+const gridButton = document.querySelector('.grid')
 
 const DEFAULT_COLOR = '#e7dcdc'
 const DEFAULT_BORDER_COLOR = '#00000080'
@@ -90,12 +91,19 @@ clearButton.addEventListener('click', () => {
     createGrid(+measurements[0], +measurements[1], size.value)
 })
 
-for (let setting of penSettings) {
-    if (setting.classList.contains('clear')) continue;
-    setting.addEventListener('click', () => {
-        if (!setting.classList.contains('selected')) {
-            penSettings.forEach((elm) => { elm.classList.remove('selected') })
-            setting.classList.add('selected')
-        }
-    })
+function clearSelected(){
+    if (!this.classList.contains('selected')) {
+        penSettings.forEach((elm) => { elm.classList.remove('selected') })
+        this.classList.add('selected')
+    }
 }
+
+for (let setting of penSettings) {
+    if (setting.classList.contains('clear') || setting.classList.contains('grid')) continue;
+    setting.addEventListener('click', clearSelected)
+}
+
+penColor.addEventListener('change', (e) => {
+    penSettings.forEach((elm) => { elm.classList.remove('selected') })
+    penSettings[0].classList.add('selected')
+})

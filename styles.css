@@ -148,7 +148,7 @@ div label:hover {
     width: 10px;
 }
 
-.selected{
+.selected, .active{
     border-color: rgb(0, 38, 255);
 }
 
