@@ -151,3 +151,7 @@ div label:hover {
 .selected{
     border-color: rgb(0, 38, 255);
 }
+
+.removeBorder{
+    border: none;
+}

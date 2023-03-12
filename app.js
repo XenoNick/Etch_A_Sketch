@@ -7,7 +7,6 @@ const clearButton = document.querySelector('.clear')
 
 const DEFAULT_COLOR = '#e7dcdc'
 const DEFAULT_BORDER_COLOR = '#00000080'
-const COLOR_BLACK = '#000000'
 
 function emptyGrid() {
     const gridSqaures = [...drawingBoard.childNodes]
@@ -55,8 +54,18 @@ window.addEventListener('load', () => {
 
 })
 
-function checkColor() {
+function rgbColor() {
+    const r = Math.floor(Math.random() * 256)
+    const g = Math.floor(Math.random() * 256)
+    const b = Math.floor(Math.random() * 256)
+    return `rgb(${r}, ${g}, ${b})`
+}
 
+function checkColor() {
+    const selectedSetting = penSettings.find((elm) => elm.classList.contains('selected'))
+    if (selectedSetting.textContent === 'Color') return penColor.value;
+    else if (selectedSetting.textContent === 'Rainbow') return rgbColor();
+    else if (selectedSetting.textContent === 'Eraser') return DEFAULT_COLOR
 }
 
 drawingBoard.addEventListener('mouseover', (e) => {
@@ -64,8 +73,7 @@ drawingBoard.addEventListener('mouseover', (e) => {
     if (e.buttons === 1) {
         const color = checkColor()
         const square = e.target
-        square.style.backgroundColor = COLOR_BLACK
-        square.style.borderColor = COLOR_BLACK
+        square.style.backgroundColor = color
     }
 })
 
@@ -73,8 +81,7 @@ drawingBoard.addEventListener('mousedown', (e) => {
     if (!e.target.classList.contains('square')) return;
     const color = checkColor()
     const square = e.target
-    square.style.backgroundColor = COLOR_BLACK
-    square.style.borderColor = COLOR_BLACK
+    square.style.backgroundColor = color
 })
 
 clearButton.addEventListener('click', () => {
@@ -88,7 +95,7 @@ for (let setting of penSettings) {
     setting.addEventListener('click', () => {
         if (!setting.classList.contains('selected')) {
             penSettings.forEach((elm) => { elm.classList.remove('selected') })
-            setting.classList.toggle('selected')
+            setting.classList.add('selected')
         }
     })
 }
