@@ -22,6 +22,7 @@ function createGrid(width, height, size) {
         const square = document.createElement('div')
         square.classList.add('square')
         square.classList.add(size)
+        if(gridButton.classList.contains('active')) square.classList.add('removeBorder')
         drawingBoard.append(square)
     }
 }
@@ -91,7 +92,7 @@ clearButton.addEventListener('click', () => {
     createGrid(+measurements[0], +measurements[1], size.value)
 })
 
-function clearSelected(){
+function clearSelected() {
     if (!this.classList.contains('selected')) {
         penSettings.forEach((elm) => { elm.classList.remove('selected') })
         this.classList.add('selected')
@@ -106,4 +107,14 @@ for (let setting of penSettings) {
 penColor.addEventListener('change', (e) => {
     penSettings.forEach((elm) => { elm.classList.remove('selected') })
     penSettings[0].classList.add('selected')
+})
+
+gridButton.addEventListener('click', () => {
+    const sqaures = [...drawingBoard.childNodes]
+    gridButton.classList.toggle('active')
+    if(gridButton.classList.contains('active')){
+        sqaures.forEach((elm)=>{elm.classList.add('removeBorder')})
+    }else{
+        sqaures.forEach((elm)=>{elm.classList.remove('removeBorder')})
+    }
 })
